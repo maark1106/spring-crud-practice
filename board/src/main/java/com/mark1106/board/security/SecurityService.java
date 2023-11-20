@@ -14,6 +14,7 @@ public class SecurityService {
 
     private static final String SECRET_KEY = "asdjahkjdaskjhasddkjqhkdas";
 
+    //로그인 서비스 던질 때 같이
     public String createToken(String subject, long expTime){
         if(expTime <= 0){
             throw new RuntimeException("만료시간이 0보다 커야합니다");
@@ -31,6 +32,7 @@ public class SecurityService {
                 .compact();
     }
 
+    //토큰 검증하는 메서드
     public String getSubject(String token){
         Claims claims = Jwts.parserBuilder()
                 .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
